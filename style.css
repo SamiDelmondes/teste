@@ -1,34 +1,18 @@
-body{
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.heart{
-    font-size: 10rem;
-    animation: heart .5s infinite alternate linear;
+html { background: #222; height: 100%; }
+body { min-height: 100%; display: flex; justify-content: space-between; }
+svg { display: block; margin: auto; max-width: 500px; width: 90%; max-height: 90vh; }
+
+.gradient-path { 
+  fill: none; /* No fill so we're just enjoying the stroke */
+  stroke-width: 2; /* Make the stroke a bit wider so we can see it better */
+  stroke-linecap: round; /* Make the stroke edges nice & round */
+  stroke-linejoin: round; /* Smooth out corners */
+  
+  --total-offset: 0; /* CSS var that will be populated by the JS for the CSS animation */
+  animation: stroke-anim 6s linear infinite;
 }
 
-@keyframes heart{
-    from{
-        transform: scale(.7);
-    }
-    to{
-        transform: scale(1);
-    }
-}
-.te{
-    font-size: 5rem;
-    left: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center
-    
-}
-p{
-    font-size: 3rem;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    justify-content: center;
-    align-items: center
+/* Go from the current `stroke-dashoffset` (set in the JS), to the total offset (provided by the JS in the CSS var */
+@keyframes stroke-anim {
+  to { stroke-dashoffset: var(--total-offset); }
 }
